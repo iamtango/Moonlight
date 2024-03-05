@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLoginIn, setIsLoginIn] = useState("Login");
 
   return (
     <div className=" top-0 ">
@@ -63,6 +65,17 @@ const Header = () => {
                 <span className="ml-1">Cart</span>
               </a>
             </li>
+            <li>
+              <button
+                className="ml-1 flex items-center text-gray-800 "
+                onClick={() => {
+                  isLoginIn === "Login"
+                    ? setIsLoginIn("Logout")
+                    : setIsLoginIn("Login");
+                }}>
+                {isLoginIn}
+              </button>
+            </li>
           </ul>
         </nav>
 
@@ -110,6 +123,11 @@ const Header = () => {
             <li>
               <a to="/help" className="text-gray-600 font-semibold">
                 Help
+              </a>
+            </li>
+            <li>
+              <a to="/signout" className="text-gray-600 font-semibold">
+                Sign out
               </a>
             </li>
           </ul>

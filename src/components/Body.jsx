@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { SWIGGY_API_URL, restaurantList } from "../constants";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { OnlyVegRestroCard } from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
 const filterData = (searchText, restaurants) => {
@@ -29,6 +29,8 @@ const Body = () => {
             let checkData =
               json?.data?.cards[i]?.card?.card?.gridElements?.infoWithStyle
                 ?.restaurants;
+
+            console.log(checkData);
 
             // if checkData is not undefined then return it
             if (checkData !== undefined) {
@@ -83,7 +85,21 @@ const Body = () => {
         <div className=" w-auto flex flex-wrap justify-center mt-8">
           {filteredRestaurants.map((restaurant) => {
             return (
-              <RestaurantCard key={restaurant.data.id} {...restaurant?.info} />
+              <Link
+                to={"/restaurant/" + restaurant?.info?.id}
+                key={restaurant?.info?.id}>
+                {restaurant?.info?.veg ? (
+                  <OnlyVegRestroCard
+                    {...restaurant?.info}
+                    key={restaurant.data.id}
+                  />
+                ) : (
+                  <RestaurantCard
+                    key={restaurant.data.id}
+                    {...restaurant?.info}
+                  />
+                )}
+              </Link>
             );
           })}
         </div>
