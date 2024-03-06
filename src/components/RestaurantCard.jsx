@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { IMG_URL } from "../constants";
 
 const RestaurantCard = ({
@@ -38,12 +39,12 @@ const RestaurantCard = ({
 export const vegRestaurantCard = (RestaurantCard) => {
   return (props) => {
     return (
-      <Box>
+      <Link>
         <label className="absolute bg-[#1F8A70] text-white p-[0.2rem] ml-8 mr-5  rounded-sm px-3">
           VEG
         </label>
         <RestaurantCard {...props} />
-      </Box>
+      </Link>
     );
   };
 };
